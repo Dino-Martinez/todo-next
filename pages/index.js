@@ -7,7 +7,10 @@ export default function Home({ todos }) {
     <div>
       <Head>
         <title>Todo Planner</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link key="1" rel="icon" href="/favicon.ico" />
+        <link key="2" rel="preconnect" href="https://fonts.googleapis.com" />
+        <link key="3" rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link key="4" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet"></link>
       </Head>
 
       <main className={styles.list}>

@@ -25,14 +25,28 @@ export default function Home({ todos }) {
 }
 
 export async function getServerSideProps(context) {
-  const { db } = await connectToDatabase();
-  const todos = await db
-    .collection('todos')
-    .find({})
-    .toArray();
-  return {
+  const { db } = await connectToDatabase()
+  const users = await db
+    .collection('users')
+    .aggregate([
+      {
+        $lookup: {
+            from: 'todos',
+            localField: 'todo_ids',
+            foreignField: '_id',
+            as: 'todos'
+        }
+      }
+    ])
+    .toArray()
+  
+  const user = users.find(user => user.username === 'dino')
+  
+  console.log(user)
+
+  return {  
     props: {
-      todos: JSON.parse(JSON.stringify(todos)),
+      todos: JSON.parse(JSON.stringify(user.todos)),
     },
-  };
+  }
 }

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../lib/mongodb'
+import styles from '../styles/List.module.css'
 
 export default function Home({ todos }) {
   return (
@@ -9,7 +10,7 @@ export default function Home({ todos }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={styles.list}>
         {todos &&
           todos.map(todo => {
             return <p key={todo._id}>{todo.title}</p>

@@ -1,8 +1,25 @@
 import Head from 'next/head'
 import { connectToDatabase } from '../lib/mongodb'
+import { signIn, signOut, useSession } from 'next-auth/client'
 import styles from '../styles/List.module.css'
 
-export default function Home({ todos }) {
+export default function Home() {
+  const [ session, loading ] = useSession()
+  return (
+    <>
+      {!session && <>
+        Not signed in <br/>
+        <button onClick={() => signIn()}>Sign in</button>
+      </>}
+      {session && <>
+        Signed in as {session.user.email} <br/>
+        <button onClick={() => signOut()}>Sign out</button>
+      </>}
+    </>
+  )
+}
+
+export function List({ todos }) {
   return (
     <div>
       <Head>
@@ -41,8 +58,6 @@ export async function getServerSideProps(context) {
     .toArray()
   
   const user = users.find(user => user.username === 'dino')
-  
-  console.log(user)
 
   return {  
     props: {

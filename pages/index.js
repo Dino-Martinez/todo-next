@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import { session, signIn, signOut, useSession } from 'next-auth/client'
-import { useState, useEffect } from 'react';
-import useSWR from 'swr'
+import { signIn, signOut, useSession } from 'next-auth/client'
+import { useState, useEffect } from 'react'
+import { useFormik } from 'formik'
 import styles from '../styles/List.module.css'
 
 export default function Home() {
@@ -18,6 +18,18 @@ export default function Home() {
     if (session)
       fetchTodos()
   }, [session])
+
+  const formik = useFormik({
+    initialValues: {
+      title: '',
+    },
+    onSubmit: values => {
+      fetch(`/api/todos/${session.user.email}`, {
+        method: 'POST',
+        body: JSON.stringify(values)
+      })
+    },
+  })
 
   return (
     <>
@@ -41,6 +53,20 @@ export default function Home() {
               return <p key={todo._id}>{todo.title}</p>
             })
           }
+
+          <form onSubmit={formik.handleSubmit}> 
+            <label htmlFor="title">Title</label>
+            <input
+              id="title"
+              name="title"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.title}
+            />
+      
+            <button type="submit">Submit</button>
+          </form>
+
         </main>
 
         <button onClick={() => signOut()}>Sign out</button>

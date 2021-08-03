@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useState, useEffect } from 'react'
 import TodoForm from '../components/todoForm'
+import TodoList from '../components/todoList'
 import styles from '../styles/List.module.css'
 
 export default function Home() {
@@ -35,14 +36,10 @@ export default function Home() {
       </>}
       {session && <>
         Signed in as {session.user.email} <br/>
+        
         <main className={styles.list}>
-          {todos &&
-            todos.map(todo => {
-              return <p key={todo._id}>{todo.title}</p>
-            })
-          }
-
           <TodoForm session={session}></TodoForm>
+          <TodoList todos={todos}></TodoList>
         </main>
 
         <button onClick={() => signOut()}>Sign out</button>

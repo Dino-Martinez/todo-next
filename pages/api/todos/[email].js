@@ -48,12 +48,17 @@ export default async function handler(req, res) {
 
   if (req.method === 'DELETE') {
     const todo = JSON.parse(req.body)
-    console.log()
     const result = await db.collection('todos')
       .deleteOne({ _id: new ObjectId(todo._id) })
-
-    console.log(result)
     
     res.status(200).send('Deleted todo')
+  }
+
+  if (req.method === 'PUT') {
+    const data = JSON.parse(req.body)
+    const result = await db.collection('todos')
+      .updateOne({ _id: new ObjectId(data._id) }, { $set: data.update })
+
+    res.status(200).send('Toggled todo completion')
   }
 }

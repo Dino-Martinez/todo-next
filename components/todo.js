@@ -1,6 +1,14 @@
 export default function Todo({ data, session }) {
   const completeTodo = () => {
-    console.log(data.title)
+    fetch(`/api/todos/${session.user.email}`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        _id: data._id,
+        update: {
+          completed: !data.completed
+        }
+      })
+    })
   }
 
   const deleteTodo = () => {

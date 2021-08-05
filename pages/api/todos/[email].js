@@ -1,4 +1,5 @@
 import { connectToDatabase } from '../../../lib/mongodb'
+import { ObjectId } from 'mongodb'
 
 export default async function handler(req, res) {
   const { email } = req.query
@@ -43,5 +44,16 @@ export default async function handler(req, res) {
       )
     
     res.status(200).send('Added todo')
+  }
+
+  if (req.method === 'DELETE') {
+    const todo = JSON.parse(req.body)
+    console.log()
+    const result = await db.collection('todos')
+      .deleteOne({ _id: new ObjectId(todo._id) })
+
+    console.log(result)
+    
+    res.status(200).send('Deleted todo')
   }
 }

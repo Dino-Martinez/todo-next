@@ -1,14 +1,20 @@
-export default function TodoList({ todos }) {
+import Todo from './todo'
+
+export default function TodoList({ todos, session }) {
   return (
     <>
-      <ul>
-        {todos &&
-          todos.map(todo => {
-            return <li key={todo._id}>{todo.title}</li>
-          })
-        }
-      </ul>
-      <div>{todos.length} todo(s) left</div>
+      {todos &&
+        <>
+          <ul>
+            {
+              todos.map(todo => {
+                return <Todo key={todo._id} session={session} data={todo}></Todo>
+              })
+            }
+          </ul>
+          <div>{todos.length} todo(s) left</div>
+        </>
+      }
     </>
   )
 }

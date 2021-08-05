@@ -47,7 +47,16 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'DELETE') {
-    const todo = JSON.parse(req.body)
+    const data = JSON.parse(req.body)
+    if (data.all) {
+      const completed = data.todos.forEach(async todo => {
+        if (todo.completed) {
+          const result = await db.collection('todos')
+            .deleteOne({ _id: new ObjectId(todo._id) })
+        }
+      })
+      return res.status(200).send('Deleted all completed todos')
+    }
     const result = await db.collection('todos')
       .deleteOne({ _id: new ObjectId(todo._id) })
     

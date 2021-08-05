@@ -14,7 +14,10 @@ export default function Todo({ data, session }) {
   const deleteTodo = () => {
     fetch(`/api/todos/${session.user.email}`, {
       method: 'DELETE',
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        all: false,
+        data
+      })
     })
   }
 

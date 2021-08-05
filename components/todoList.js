@@ -1,6 +1,15 @@
 import Todo from './todo'
 
 export default function TodoList({ todos, session }) {
+  const deleteCompletedTodos = () => {
+    fetch(`/api/todos/${session.user.email}`, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        all: true,
+        todos
+      })
+    })
+  }
   return (
     <>
       {todos &&
@@ -12,7 +21,10 @@ export default function TodoList({ todos, session }) {
               })
             }
           </ul>
-          <div>{todos.length} todo(s) left</div>
+          <div>
+            <p>{todos.length} todo(s) left</p>
+            <button onClick={() => { deleteCompletedTodos() }} >Delete completed</button>
+          </div>
         </>
       }
     </>

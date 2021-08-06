@@ -6,29 +6,20 @@ export default async function handler(req, res) {
   const { db } = await connectToDatabase()
   if (req.method === 'GET') {
     // Find todos for this user
-    const users = await db
-      .collection('users')
-      .aggregate([
-        {
-          $lookup: {
-              from: 'todos',
-              localField: 'todo_ids',
-              foreignField: '_id',
-              as: 'todos'
-          }
-        }
-      ])
+    const todos = await db
+      .collection('todos')
+      .find({ author: email })
       .toArray()
     
-    const user = users.find(user => user.email === email)
-    return res.status(200).json(user.todos)
+    return res.status(200).json(todos)
   }
 
   if (req.method === 'POST') {
     // Insert new todo for this user
     const todo = JSON.parse(req.body)
     todo.description = ''
-    todo.completed = false 
+    todo.completed = false
+    todo.author = email 
     await db.collection('todos')
       .insertOne(todo)
 

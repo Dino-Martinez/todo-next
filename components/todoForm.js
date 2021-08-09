@@ -1,4 +1,6 @@
 import { useState } from "react"
+import styles from '../styles/Form.module.scss'
+import todoStyles from '../styles/Todo.module.scss'
 
 export default function TodoForm({ session, onUpdate }) {
   const [title, setTitle] = useState('')
@@ -17,9 +19,10 @@ export default function TodoForm({ session, onUpdate }) {
   }
 
   return (
-    <form onSubmit={onSubmit}> 
-      <label htmlFor="title">Title</label>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <button className={todoStyles.check} type="submit"></button>
       <input
+        className={styles.input}
         id="title"
         name="title"
         type="text"
@@ -27,8 +30,6 @@ export default function TodoForm({ session, onUpdate }) {
         onChange={onChange}
         value={title}
       />
-
-      <button type="submit">Submit</button>
     </form>
   )
 }

@@ -1,0 +1,19 @@
+@import './variables';
+@import "./fontawesome/scss/solid.scss";
+
+.form {
+  background: $clr-content-background;
+  box-shadow: $box-shadow;
+  padding: $ms;
+  list-style: none;
+  border-radius: $border-radius;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  font-size: $font-med;
+}

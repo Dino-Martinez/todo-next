@@ -4,5 +4,5 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 50%;
+  width: clamp(300px, 60%, 600px);
 }

@@ -1,0 +1,36 @@
+@import './variables';
+
+.group {
+  background: $clr-content-background;
+  box-shadow: $box-shadow;
+  padding: $ms;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & .btn:hover {
+    color: $clr-text;
+  }
+
+  & .btn[data-active="true"] {
+    color: $clr-brightblue;
+  }
+}
+
+.group p {
+  margin: 0;
+}
+
+.group * {
+  font-size: $font-small;
+  color: $clr-text-muted;
+
+  &:first-child {
+    margin-right: auto;
+  }
+
+  &:last-child {
+    margin-left: auto;
+  }
+}

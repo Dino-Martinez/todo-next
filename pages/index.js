@@ -39,7 +39,7 @@ export default function Home() {
         
         <main className={styles.list}>
           <TodoForm session={session}></TodoForm>
-          <TodoList todos={todos} session={session}></TodoList>
+          <TodoList data={todos} session={session}></TodoList>
         </main>
 
         <button onClick={() => signOut()}>Sign out</button>

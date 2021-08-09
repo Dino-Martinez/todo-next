@@ -23,7 +23,15 @@ export default function Todo({ data, session }) {
 
   return (
     <li>
+      <style jsx>{`
+        p {
+          display: inline;
+        }
+      `}</style>
       <button onClick={() => { completeTodo() }}>Toggle</button>
+      {data.completed &&
+        <p>✅</p>
+      }
       {data.title}
       <button onClick={() => { deleteTodo() }}>Delete</button>
     </li>

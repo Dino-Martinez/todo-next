@@ -1,15 +1,35 @@
 import Todo from './todo'
+import TodoBulkActions from './todoBulkActions'
+import { useState, useEffect } from 'react'
 
-export default function TodoList({ todos, session }) {
-  const deleteCompletedTodos = () => {
-    fetch(`/api/todos/${session.user.email}`, {
-      method: 'DELETE',
-      body: JSON.stringify({
-        all: true,
-        todos
-      })
-    })
-  }
+export default function TodoList({ data, session }) {
+  const [todos, filterData] = useState([])
+  const [filter, setFilter] = useState('all')
+  const [numLeft, setNumLeft] = useState(0)
+
+  useEffect(() => {
+    if (data) {
+      if (filter === 'all') {
+        filterData(data)
+      }
+      if (filter === 'pending') {
+        filterData(data.filter(todo => !todo.completed))
+      }
+      if (filter === 'complete') {
+        filterData(data.filter(todo => todo.completed))
+      }
+    }
+  }, [data, filter])
+
+  useEffect(() => {
+    setNumLeft(todos.reduce((accumulator, current) => {
+      if (current.completed)
+        return accumulator 
+      
+      return accumulator + 1
+    }, 0))
+  }, [todos])
+
   return (
     <>
       {todos &&
@@ -21,10 +41,7 @@ export default function TodoList({ todos, session }) {
               })
             }
           </ul>
-          <div>
-            <p>{todos.length} todo(s) left</p>
-            <button onClick={() => { deleteCompletedTodos() }} >Delete completed</button>
-          </div>
+          <TodoBulkActions numLeft={numLeft} callback={setFilter}></TodoBulkActions>
         </>
       }
     </>

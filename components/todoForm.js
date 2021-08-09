@@ -1,27 +1,31 @@
-import { useFormik } from 'formik'
+import { useState } from "react"
 
-export default function TodoForm({ session }) {
-  const formik = useFormik({
-    initialValues: {
-      title: '',
-    },
-    onSubmit: values => {
-      fetch(`/api/todos/${session.user.email}`, {
-        method: 'POST',
-        body: JSON.stringify(values)
-      })
-    },
-  })
+export default function TodoForm({ session, onUpdate }) {
+  const [title, setTitle] = useState('')
+  const onSubmit = event => {
+    event.preventDefault()
+    fetch(`/api/todos/${session.user.email}`, {
+      method: 'POST',
+      body: JSON.stringify({title})
+    })
+    onUpdate()
+    setTitle('')
+  }
+
+  const onChange = (event) => {
+    setTitle(event.target.value)
+  }
 
   return (
-    <form onSubmit={formik.handleSubmit}> 
+    <form onSubmit={onSubmit}> 
       <label htmlFor="title">Title</label>
       <input
         id="title"
         name="title"
         type="text"
-        onChange={formik.handleChange}
-        value={formik.values.title}
+        placeholder="Enter Title"
+        onChange={onChange}
+        value={title}
       />
 
       <button type="submit">Submit</button>

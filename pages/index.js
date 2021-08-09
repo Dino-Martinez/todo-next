@@ -9,13 +9,14 @@ export default function Home() {
   const [ session, loading ] = useSession()
   const [ todos, setTodos ] = useState(null)
 
-  useEffect(()=>{
-    const fetchTodos = async() => {
-      const res = await fetch(`/api/todos/${session.user.email}`)
-      const json = await res.json()
+  const fetchTodos = async() => {
+    const res = await fetch(`/api/todos/${session.user.email}`)
+    const json = await res.json()
 
-      setTodos(json)
-    }
+    setTodos(json)
+  }
+
+  useEffect(()=>{
     if (session)
       fetchTodos()
   }, [session])
@@ -38,8 +39,8 @@ export default function Home() {
         Signed in as {session.user.email} <br/>
         
         <main className={styles.list}>
-          <TodoForm session={session}></TodoForm>
-          <TodoList data={todos} session={session}></TodoList>
+          <TodoForm session={session} onUpdate={fetchTodos}></TodoForm>
+          <TodoList data={todos} onUpdate={fetchTodos} session={session}></TodoList>
         </main>
 
         <button onClick={() => signOut()}>Sign out</button>

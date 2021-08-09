@@ -2,7 +2,7 @@ import Todo from './todo'
 import TodoBulkActions from './todoBulkActions'
 import { useState, useEffect } from 'react'
 
-export default function TodoList({ data, session }) {
+export default function TodoList({ data, session, onUpdate }) {
   const [todos, filterData] = useState([])
   const [filter, setFilter] = useState('all')
   const [numLeft, setNumLeft] = useState(0)
@@ -37,11 +37,11 @@ export default function TodoList({ data, session }) {
           <ul>
             {
               todos.map(todo => {
-                return <Todo key={todo._id} session={session} data={todo}></Todo>
+                return <Todo key={todo._id} onUpdate={onUpdate} session={session} data={todo}></Todo>
               })
             }
           </ul>
-          <TodoBulkActions numLeft={numLeft} callback={setFilter}></TodoBulkActions>
+          <TodoBulkActions numLeft={numLeft} onUpdate={onUpdate} callback={setFilter}></TodoBulkActions>
         </>
       }
     </>

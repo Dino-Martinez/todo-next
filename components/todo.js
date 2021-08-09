@@ -1,4 +1,4 @@
-export default function Todo({ data, session }) {
+export default function Todo({ data, session, onUpdate }) {
   const completeTodo = () => {
     fetch(`/api/todos/${session.user.email}`, {
       method: 'PUT',
@@ -9,6 +9,7 @@ export default function Todo({ data, session }) {
         }
       })
     })
+    onUpdate()
   }
 
   const deleteTodo = () => {
@@ -16,9 +17,10 @@ export default function Todo({ data, session }) {
       method: 'DELETE',
       body: JSON.stringify({
         all: false,
-        data
+        todo: data
       })
     })
+    onUpdate()
   }
 
   return (

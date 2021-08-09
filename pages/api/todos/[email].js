@@ -48,6 +48,8 @@ export default async function handler(req, res) {
       })
       return res.status(200).send('Deleted all completed todos')
     }
+
+    const todo = data.todo
     const result = await db.collection('todos')
       .deleteOne({ _id: new ObjectId(todo._id) })
     

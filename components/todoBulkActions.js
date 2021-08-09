@@ -1,4 +1,4 @@
-export default function TodoBulkActions({ numLeft, callback }) {
+export default function TodoBulkActions({ numLeft, callback, onUpdate }) {
   const deleteCompletedTodos = () => {
     fetch(`/api/todos/${session.user.email}`, {
       method: 'DELETE',
@@ -7,6 +7,7 @@ export default function TodoBulkActions({ numLeft, callback }) {
         todos
       })
     })
+    onUpdate()
   }
   return (
     <>

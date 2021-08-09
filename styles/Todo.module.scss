@@ -1,0 +1,79 @@
+@import './variables';
+@import "./fontawesome/scss/solid.scss";
+
+$size: 30px;
+
+.todo,
+.todo *{
+  font-size: $font-med;
+}
+
+.todo {
+  display: flex;
+  max-width: 100%;
+  border-bottom: 1px solid $clr-highlight;
+  padding: $ms;
+}
+
+.todo *:last-child {
+  margin-left: auto;
+}
+
+.complete,
+.check {
+  border-radius: 50%;
+  color: $clr-content-background;
+  position: relative;
+  width: $size;
+  height: $size;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: $ms;
+  padding: 0;
+  @extend .fas;
+
+  &:before {
+    content: fa-content($fa-var-check);
+    position: absolute;
+    font-size: $font-small;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: $size;
+  }
+}
+
+.complete {
+  background: $clr-checkbg;
+  border: 1px solid $clr-brightblue;
+}
+
+.check {
+  border: 1px solid $clr-highlight;
+  &:hover {
+    background: $clr-checkbg;
+    border-color: $clr-brightblue;
+  }
+}
+
+.cross {
+  width: $size;
+  height: $size;
+  position: relative;
+  @extend .fas;
+
+  &:hover {
+    &:before {
+      color: $clr-text;
+    }
+  }
+
+  &:before {
+    content: fa-content($fa-var-times);
+    width: 100%;
+    height: 100%;
+    color: $clr-text-muted;
+  }
+}

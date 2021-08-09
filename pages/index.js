@@ -3,7 +3,7 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 import { useState, useEffect } from 'react'
 import TodoForm from '../components/todoForm'
 import TodoList from '../components/todoList'
-import styles from '../styles/List.module.css'
+import styles from '../styles/Main.module.scss'
 
 export default function Home() {
   const [ session, loading ] = useSession()
@@ -37,13 +37,11 @@ export default function Home() {
       </>}
       {session && <>
         Signed in as {session.user.email} <br/>
-        
-        <main className={styles.list}>
+        <button onClick={() => signOut()}>Sign out</button>
+        <main className={styles.main}>
           <TodoForm session={session} onUpdate={fetchTodos}></TodoForm>
           <TodoList data={todos} onUpdate={fetchTodos} session={session}></TodoList>
         </main>
-
-        <button onClick={() => signOut()}>Sign out</button>
       </>}
     </>
   )

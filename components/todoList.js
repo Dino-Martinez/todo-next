@@ -1,6 +1,7 @@
 import Todo from './todo'
 import TodoBulkActions from './todoBulkActions'
 import { useState, useEffect } from 'react'
+import styles from '../styles/List.module.scss'
 
 export default function TodoList({ data, session, onUpdate }) {
   const [todos, filterData] = useState([])
@@ -34,7 +35,7 @@ export default function TodoList({ data, session, onUpdate }) {
     <>
       {todos &&
         <>
-          <ul>
+          <ul className={styles.list}>
             {
               todos.map(todo => {
                 return <Todo key={todo._id} onUpdate={onUpdate} session={session} data={todo}></Todo>

@@ -1,7 +1,8 @@
-.list {
+@import './variables';
+
+.main {
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 50%;
-  background: lightgray;
 }

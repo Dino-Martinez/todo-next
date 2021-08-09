@@ -1,3 +1,5 @@
+import styles from '../styles/Todo.module.scss'
+
 export default function Todo({ data, session, onUpdate }) {
   const completeTodo = () => {
     fetch(`/api/todos/${session.user.email}`, {
@@ -22,20 +24,21 @@ export default function Todo({ data, session, onUpdate }) {
     })
     onUpdate()
   }
-
   return (
-    <li>
+    <li className={styles.todo}>
       <style jsx>{`
         p {
           display: inline;
         }
       `}</style>
-      <button onClick={() => { completeTodo() }}>Toggle</button>
-      {data.completed &&
-        <p>✅</p>
+      {data.completed && 
+        <button className={styles.complete} onClick={() => { completeTodo() }}></button>
+      }
+      {!data.completed &&
+        <button className={styles.check} onClick={() => { completeTodo() }}></button>
       }
       {data.title}
-      <button onClick={() => { deleteTodo() }}>Delete</button>
+      <button className={styles.cross} onClick={() => { deleteTodo() }}></button>
     </li>
   )
 }

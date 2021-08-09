@@ -1,0 +1,16 @@
+@import './variables';
+
+* {
+  font-family: 'Oxygen', sans-serif;
+}
+
+body,
+html {
+  background: $clr-page-background;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}

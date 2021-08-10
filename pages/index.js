@@ -1,8 +1,9 @@
 import Head from 'next/head'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/client'
 import { useState, useEffect } from 'react'
 import TodoForm from '../components/todoForm'
 import TodoList from '../components/todoList'
+import SignInForm from '../components/signinForm'
 import styles from '../styles/Main.module.scss'
 
 export default function Home() {
@@ -31,18 +32,13 @@ export default function Home() {
          <link key="4" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet"></link>
       </Head>
 
-      {!session && <>
-        Not signed in <br/>
-        <button onClick={() => signIn('google')}>Sign in</button>
-      </>}
-      {session && <>
-        Signed in as {session.user.email} <br/>
-        <button onClick={() => signOut()}>Sign out</button>
+      <SignInForm session={session}></SignInForm>
+      {session && 
         <main className={styles.main}>
           <TodoForm session={session} onUpdate={fetchTodos}></TodoForm>
           <TodoList data={todos} onUpdate={fetchTodos} session={session}></TodoList>
         </main>
-      </>}
+      }
     </>
   )
 }

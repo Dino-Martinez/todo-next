@@ -1,0 +1,55 @@
+@import './variables';
+@import "./fontawesome/scss/brands.scss";
+
+$size: 64px;
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: $ml;
+}
+
+.signoutBtn {
+  border-radius: $border-radius;
+  background: $clr-content-background;
+  box-shadow: $box-shadow;
+  padding: $pbtn;
+
+  &:hover {
+    background: $clr-highlight;
+  }
+}
+
+.googleBtn {
+  border-radius: 50%;
+  color: $clr-text;
+  background: $clr-content-background;
+  box-shadow: $box-shadow;
+  position: relative;
+  width: $size;
+  height: $size;
+  padding: 0;
+  @extend .fab;
+
+  &:hover {
+    background: $clr-highlight;
+  }
+
+  &:before,
+  &:after {
+    position: absolute;
+    font-size: $font-med;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  &:before {
+    content: fa-content($fa-var-google);
+    top: 0;
+    left: 0;
+    line-height: $size;
+  }
+}

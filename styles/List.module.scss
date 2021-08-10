@@ -1,7 +1,7 @@
 @import './variables';
 
 .list {
-  background: $clr-content-background;
+  background: var(--clr-content-background);
   box-shadow: $box-shadow;
   padding: 0;
   list-style: none;

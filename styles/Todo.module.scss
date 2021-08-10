@@ -1,7 +1,6 @@
 @import './variables';
 @import "./fontawesome/scss/solid.scss";
 
-$size: 30px;
 
 .todo,
 .todo *{
@@ -11,7 +10,7 @@ $size: 30px;
 .todo {
   display: flex;
   max-width: 100%;
-  border-bottom: 1px solid $clr-highlight;
+  border-bottom: 1px solid var(--clr-highlight);
   padding: $ms;
 }
 
@@ -19,13 +18,18 @@ $size: 30px;
   margin-left: auto;
 }
 
+.title {
+  margin: 0;
+  max-width: 80%;
+}
+
 .complete,
 .check {
   border-radius: 50%;
-  color: $clr-content-background;
+  color: var(--clr-content-background);
   position: relative;
-  width: $size;
-  height: $size;
+  width: var(--icon-size);
+  height: var(--icon-size);
   margin-top: auto;
   margin-bottom: auto;
   margin-right: $ms;
@@ -35,38 +39,38 @@ $size: 30px;
   &:before {
     content: fa-content($fa-var-check);
     position: absolute;
-    font-size: $font-xsmall;
+    font-size: calc(var(--icon-size) * .4);
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     text-align: center;
-    line-height: $size;
+    line-height: var(--icon-size);
   }
 }
 
 .complete {
-  background: $clr-checkbg;
-  border: 1px solid $clr-brightblue;
+  background: var(--clr-checkbg);
+  border: 1px solid var(--clr-brightblue);
 }
 
 .check {
-  border: 1px solid $clr-highlight;
+  border: 1px solid var(--clr-highlight);
   &:hover {
-    background: $clr-checkbg;
-    border-color: $clr-brightblue;
+    background: var(--clr-checkbg);
+    border-color: var(--clr-brightblue);
   }
 }
 
 .cross {
-  width: $size;
-  height: $size;
+  width: var(--icon-size);
+  height: var(--icon-size);
   position: relative;
   @extend .fas;
 
   &:hover {
     &:before {
-      color: $clr-text;
+      color: (--clr-text);
     }
   }
 
@@ -74,6 +78,6 @@ $size: 30px;
     content: fa-content($fa-var-times);
     width: 100%;
     height: 100%;
-    color: $clr-text-muted;
+    color: (--clr-text-muted);
   }
 }

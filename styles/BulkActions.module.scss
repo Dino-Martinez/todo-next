@@ -1,7 +1,7 @@
 @import './variables';
 
 .group {
-  background: $clr-content-background;
+  background: var(--clr-content-background);
   box-shadow: $box-shadow;
   padding: $ms;
   border-radius: $border-radius;
@@ -10,11 +10,11 @@
   align-items: center;
 
   & .btn:hover {
-    color: $clr-text;
+    color: var(--clr-text);
   }
 
   & .btn[data-active="true"] {
-    color: $clr-brightblue;
+    color: var(--clr-brightblue);
   }
 }
 
@@ -24,7 +24,7 @@
 
 .group * {
   font-size: $font-small;
-  color: $clr-text-muted;
+  color: var(--clr-text-muted);
 
   &:first-child {
     margin-right: auto;

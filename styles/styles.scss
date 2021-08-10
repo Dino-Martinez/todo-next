@@ -3,15 +3,51 @@
 * {
   font-family: 'Oxygen', sans-serif;
   transition: all .2s ease;
+  color: var(--clr-text);
 }
 
 body,
 html {
-  background: $clr-page-background;
+  background: var(--clr-page-background);
 }
 
 button {
   cursor: pointer;
   background: transparent;
   border: none;
+}
+
+html[data-theme="light"] {
+  --clr-page-background: hsl(0, 0%, 98%);
+  --clr-highlight: hsl(236, 33%, 92%);
+  --clr-text-inactive: hsl(233, 11%, 84%);
+  --clr-text-muted: hsl(236, 9%, 61%);
+  --clr-text: hsl(235, 19%, 35%);
+  --clr-brightblue: hsl(220, 98%, 61%);
+  --clr-content-background: hsl(0, 0%, 100%);
+  --clr-shadow: hsl(0, 0%, 90%);
+  --clr-checkbg: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+html[data-theme="dark"] {
+  --clr-page-background: hsl(235, 21%, 11%);
+  --clr-highlight: hsl(237, 14%, 26%);
+  --clr-text-inactive: hsl(233, 14%, 35%);
+  --clr-text-muted: hsl(234, 11%, 52%);
+  --clr-text: hsl(234, 39%, 85%);
+  --clr-brightblue: hsl(220, 98%, 61%);
+  --clr-content-background: hsl(235, 24%, 19%);
+  --clr-shadow: hsl(0, 0%, 5%);
+  --clr-checkbg: linear-gradient(hsl(35, 100%, 67%), hsl(340, 87%, 65%));
+}
+
+html {
+  --icon-size: 2rem;
+}
+
+
+@media (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
 }

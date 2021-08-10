@@ -2,7 +2,7 @@
 @import "./fontawesome/scss/solid.scss";
 
 .form {
-  background: $clr-content-background;
+  background: var(--clr-content-background);
   box-shadow: $box-shadow;
   padding: $ms;
   list-style: none;

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import TodoForm from '../components/todoForm'
 import TodoList from '../components/todoList'
 import SignInForm from '../components/signinForm'
+import ThemeToggle from '../components/themeToggle'
 import styles from '../styles/Main.module.scss'
 
 export default function Home() {
@@ -32,9 +33,10 @@ export default function Home() {
          <link key="4" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet"></link>
       </Head>
 
-      <SignInForm session={session}></SignInForm>
       {session && 
         <main className={styles.main}>
+          <SignInForm session={session}></SignInForm>
+          <ThemeToggle></ThemeToggle>
           <TodoForm session={session} onUpdate={fetchTodos}></TodoForm>
           <TodoList data={todos} onUpdate={fetchTodos} session={session}></TodoList>
         </main>

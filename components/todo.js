@@ -37,7 +37,7 @@ export default function Todo({ data, session, onUpdate }) {
       {!data.completed &&
         <button className={styles.check} onClick={() => { completeTodo() }}></button>
       }
-      {data.title}
+      <p className={styles.title}>{data.title}</p>
       <button className={styles.cross} onClick={() => { deleteTodo() }}></button>
     </li>
   )

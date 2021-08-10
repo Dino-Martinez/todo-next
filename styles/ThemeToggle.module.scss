@@ -1,0 +1,40 @@
+@import './variables';
+@import "./fontawesome/scss/solid.scss";
+
+$size: 64px;
+
+.darkBtn,
+.lightBtn {
+  margin-left: auto;
+  margin-bottom: 2rem;
+  border-radius: 50%;
+  color: var(--clr-text);
+  position: relative;
+  width: $size;
+  height: $size;
+  padding: 0;
+  @extend .fas;
+
+  &:before {
+    position: absolute;
+    font-size: calc(var(--icon-size) * 1.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: $size;
+  }
+}
+
+.darkBtn {
+  &:before {
+    content: fa-content($fa-var-moon);
+  }
+}
+
+.lightBtn {
+  &:before {
+    content: fa-content($fa-var-sun);
+  }
+}

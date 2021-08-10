@@ -13,19 +13,19 @@ $size: 64px;
 
 .signoutBtn {
   border-radius: $border-radius;
-  background: $clr-content-background;
+  background: var(--clr-content-background);
   box-shadow: $box-shadow;
   padding: $pbtn;
 
   &:hover {
-    background: $clr-highlight;
+    background: var(--clr-highlight);
   }
 }
 
 .googleBtn {
   border-radius: 50%;
-  color: $clr-text;
-  background: $clr-content-background;
+  color: var(--clr-text);
+  background: var(--clr-content-background);
   box-shadow: $box-shadow;
   position: relative;
   width: $size;
@@ -34,7 +34,7 @@ $size: 64px;
   @extend .fab;
 
   &:hover {
-    background: $clr-highlight;
+    background: var(--clr-highlight);
   }
 
   &:before,

@@ -6,6 +6,23 @@
   color: var(--clr-text);
 }
 
+body {
+  position:relative;
+  z-index: 1;
+  margin: 0;
+  &:before {
+    position:absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--clr-page-background-secondary);
+    clip-path: polygon(0 0, 0 50%, 125% 0);
+    z-index: -1;
+  }
+}
+
 body,
 html {
   background: var(--clr-page-background);
@@ -19,6 +36,7 @@ button {
 
 html[data-theme="light"] {
   --clr-page-background: hsl(0, 0%, 98%);
+  --clr-page-background-secondary: hsl(230, 15%, 90%);
   --clr-highlight: hsl(236, 33%, 92%);
   --clr-text-inactive: hsl(233, 11%, 84%);
   --clr-text-muted: hsl(236, 9%, 61%);
@@ -31,6 +49,7 @@ html[data-theme="light"] {
 
 html[data-theme="dark"] {
   --clr-page-background: hsl(235, 21%, 11%);
+  --clr-page-background-secondary: hsl(300, 25%, 15%);
   --clr-highlight: hsl(237, 14%, 26%);
   --clr-text-inactive: hsl(233, 14%, 35%);
   --clr-text-muted: hsl(234, 11%, 52%);

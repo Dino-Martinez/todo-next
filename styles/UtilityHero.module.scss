@@ -1,0 +1,8 @@
+@import './variables';
+
+.nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position:relative;
+}

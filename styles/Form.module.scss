@@ -16,4 +16,6 @@
   flex: 1;
   border: none;
   font-size: $font-med;
+  background: var(--clr-content-background);
+  color: var(--clr-text-muted);
 }

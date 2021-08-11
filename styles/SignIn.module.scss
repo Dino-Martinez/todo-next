@@ -6,9 +6,14 @@ $size: 64px;
 .content {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: $ml;
+
+  & > p {
+    font-size: $font-med;
+  }
 }
 
 .signoutBtn {
@@ -16,6 +21,7 @@ $size: 64px;
   background: var(--clr-content-background);
   box-shadow: $box-shadow;
   padding: $pbtn;
+  margin-left: $ms;
 
   &:hover {
     background: var(--clr-highlight);

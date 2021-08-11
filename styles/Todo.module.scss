@@ -12,6 +12,10 @@
   max-width: 100%;
   border-bottom: 1px solid var(--clr-highlight);
   padding: $ms;
+
+  &:last-child {
+    border: none;
+  }
 }
 
 .todo *:last-child {

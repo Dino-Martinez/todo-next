@@ -3,8 +3,7 @@ import { useSession } from 'next-auth/client'
 import { useState, useEffect } from 'react'
 import TodoForm from '../components/todoForm'
 import TodoList from '../components/todoList'
-import SignInForm from '../components/signinForm'
-import ThemeToggle from '../components/themeToggle'
+import UtilityHero from '../components/utilityHero'
 import styles from '../styles/Main.module.scss'
 
 export default function Home() {
@@ -35,8 +34,7 @@ export default function Home() {
 
       {session && 
         <main className={styles.main}>
-          <SignInForm session={session}></SignInForm>
-          <ThemeToggle></ThemeToggle>
+          <UtilityHero session={session}></UtilityHero>
           <TodoForm session={session} onUpdate={fetchTodos}></TodoForm>
           <TodoList data={todos} onUpdate={fetchTodos} session={session}></TodoList>
         </main>
